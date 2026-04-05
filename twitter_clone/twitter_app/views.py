@@ -17,6 +17,10 @@ def posts(request):
         'main_post': all_posts[4] if all_posts.count() > 4 else None,
         # Посты с 6-го по 10-й для правой колонки "Right Now"
         'right_now_posts': all_posts[5:10],
+
+        'top_news_posts': all_posts[11:22]
+
+
     }
     
     # Теперь мы ВСЕГДА рендерим base.html и передаем туда context

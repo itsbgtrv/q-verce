@@ -253,41 +253,263 @@
 }
 
 
-/* Исправленный контейнер для блока с большой новостью и "Right Now" */
+/* Общий контейнер */
 .meddle_block_3 {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20%; /* 10% от ширины экрана вместо фиксированных 250px */
-    gap: 5%;
-    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 340px; /* Справа фиксированная колонка */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Левая часть (большая новость) */
-.meddle_block_3_left {
-    flex: 0 0 60%; /* Занимает ровно 65% ширины, не больше */
-    display: flex;
-    flex-direction: column;
+/* --- ЛЕВАЯ ЧАСТЬ --- */
+.main_post_link {
     text-decoration: none;
     color: #000;
 }
 
-.meddle_block_3_left img {
+.main_post_image img {
     width: 100%;
-    height: 400px;       /* Устанавливаем фиксированную высоту */
-    object-fit: cover;   /* ВАЖНО: картинка обрежется под размер, а не сплющится */
-    border-radius: 10px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px; /* Закругленные углы как на скрине */
+}
+
+.category_label {
+    color: #b1b1b1;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+    text-transform: uppercase;
+}
+
+.main_post_title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.main_post_description {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.main_post_meta {
+    font-size: 13px;
+    color: #888;
+}
+
+.author_name { font-weight: 600; margin-right: 10px; }
+
+/* --- ПРАВАЯ ЧАСТЬ --- */
+.meddle_block_3_right {
+    border: 1px solid #e0e0e0; /* Рамка вокруг блока */
+    border-radius: 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightnow_header {
+    padding: 20px 20px 10px 20px;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.rightnow_list {
+    flex-grow: 1;
+}
+
+.rightnow_item {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 12px;
+}
+
+.rightnow_img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.rightnow_title {
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.rightnow_title:hover { color: #4f87ff; }
+
+.rightnow_meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #666;
+}
+
+.meta_icon {
+    font-style: italic;
+    font-weight: bold;
+    color: #0066cc;
+}
+
+/* Кнопка See All внизу */
+.see_all_footer_btn {
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: bold;
+    border-top: 1px solid #f0f0f0;
+}
+
+.see_all_footer_btn:hover { background-color: #f9f9f9; border-radius: 0 0 12px 12px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Внешний контейнер */
+.partner_section_wrapper {
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Сама карточка */
+.partner_card {
+    background-color: #f1f3f6;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* Центрирует всю группу (текст + фото) внутри серого фона */
+    padding: 30px 40px;        /* Еще меньше вертикальные отступы */
+    gap: 80px;                 /* Увеличили зазор, чтобы текст и фото разошлись от краев к центру */
+    overflow: hidden;
+}
+
+/* Левая колонка с текстом */
+.partner_content_left {
+    flex: 0 1 auto;            /* Блок теперь не растягивается, а занимает место по контенту */
+    max-width: 420px;          /* Чуть сузили, чтобы блок выглядел аккуратнее */
+    text-align: left;          /* Возвращаем выравнивание текста по левому краю */
+}
+
+.partner_title_main {
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;           /* Компактный размер как на макете */
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.partner_description_text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.4;
     margin-bottom: 20px;
 }
 
-/* Правая колонка */
-.meddle_block_3_right {
-    flex: 0 0 30%; /* Занимает 30% ширины */
-    border: 1px solid #eee;
-    border-radius: 16px;
-    padding: 24px;
-    background: #fff;
-    height: fit-content;
+/* Список услуг */
+.feature_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
 }
+
+/* Кнопка */
+.btn_work_black {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #fff !important;
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* Правая часть с картинкой */
+.partner_image_right {
+    flex: 0 1 auto;
+}
+
+.partner_image_right img {
+    width: 100%;
+    max-width: 350px;          /* Маленькая картинка = низкая карточка */
+    height: auto;
+    border-radius: 20px;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .title_post {
     font-size: 36px;
@@ -396,57 +618,175 @@
     display: block;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 1. Глобальные настройки контейнера */
 .container {
     display: grid;
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
-    
-    /* ОПРЕДЕЛЯЕМ КОЛОНКИ: Сайдбар (250px), Контент (гибкий), Виджеты (300px) */
-    grid-template-columns: 250px 1fr 300px;
-    
-    /* Расстояние между ячейками */
-    gap: 20px;
-    
-    /* Рисуем макет */
-    grid-template-areas: 
-        "header  header  header"
-        "sidebar main    widgets"
-        "footer  footer  footer";
-}
-
-/* ДИАГНОСТИЧЕСКИЙ СТИЛЬ: Чтобы видеть границы */
-.grid-item {
-    padding: 20px; /* Внутренние отступы, чтобы текст не лип к границам ячейки */
+    /* Три колонки: Сайдбар (300px), Центр (гибкий), Правая часть (280px) */
+    grid-template-columns: 300px 1fr 280px;
+    gap: 0; /* Убираем gap, так как будем использовать border и padding */
     background-color: #fff;
-    border-radius: 8px;
-    
-    /* Яркий бордер, чтобы видеть деления сетки */
-    outline: 3px dashed #3498db; 
-    transition: outline 0.3s;
+    font-family: 'Arial', sans-serif;
 }
 
-.grid-item:hover {
-    outline: 3px solid #e74c3c; /* Подсветка при наведении */
+/* 2. Общие стили для всех колонок */
+.grid-item {
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Привязка к областям */
-.header { grid-area: header; display: flex; justify-content: space-between; align-items: center; }
-.sidebar { grid-area: sidebar; }
-.main-content { grid-area: main; }
-.widgets { grid-area: widgets; }
-.footer { grid-area: footer; text-align: center; }
+/* 3. ЛЕВАЯ КОЛОНКА (Sidebar) */
+.sidebar {
+    border-right: 1px solid #eee; /* Вертикальная линия */
+}
 
-/* Стилизация контента внутри */
-.logo { font-size: 24px; font-weight: bold; color: #2c3e50; }
-.top-nav a { margin-left: 20px; text-decoration: none; color: #3498db; font-weight: 500; }
+.sidebar_post {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
 
-.cat-list { list-style: none; margin-top: 15px; }
-.cat-list li { padding: 10px 0; border-bottom: 1px solid #eee; cursor: pointer; }
+.sidebar_link {
+    display: flex;
+    gap: 15px;
+    text-decoration: none;
+    color: #000;
+}
 
-.post-preview { display: flex; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
-.post-img { width: 120px; height: 80px; background: #ddd; border-radius: 4px; flex-shrink: 0; }
+.sidebar_img_container {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
 
-.widget-box { background: #fdfdfd; border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 6px; }
+.sidebar_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar_title {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 800;
+    margin: 4px 0;
+}
+
+/* 4. ЦЕНТРАЛЬНАЯ КОЛОНКА (Main Content) */
+.main-content {
+    padding: 30px 50px;
+    text-align: center;
+}
+
+.main_title {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 0.95;
+    margin: 15px 0;
+    letter-spacing: -1px;
+    text-transform: none;
+}
+
+.main_subtitle {
+    font-size: 18px;
+    line-height: 1.4;
+    color: #444;
+    margin-bottom: 20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main_image img {
+    width: 100%;
+    max-height: 400px;
+    margin-top: 20px;
+    /* Можно добавить filter: grayscale(1); если хочешь ЧБ как на скрине */
+}
+
+/* 5. ПРАВАЯ КОЛОНКА (Widgets / Right Now) */
+.widgets {
+    border-left: 1px solid #eee; /* Вертикальная линия справа */
+}
+
+.right_post {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.right_post a {
+    text-decoration: none;
+    color: #000;
+}
+
+.right_post_title {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+/* 6. ТЕГИ (Категории и Авторы) */
+.category_tag {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.author_tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
 
 
 </style>
@@ -530,140 +870,158 @@
 
     <div class="meddle_block_3_left">
         {% if main_post %}
-            <a href="{% url 'post_detail' main_post.id %}" style="text-decoration: none; color: inherit;">
-                {% if main_post.image %}
-                    <img src="{{ main_post.image.url }}" alt="Main Post">
-                {% else %}
-                    <img src="{% static 'twitter_app/default_main.jpg' %}" alt="Main Post">
-                {% endif %}
-                
-                <div class="meddle_block_3_up_title">
-                    <p style="color: #4f87ff; font-weight: 700; margin: 0;">LATEST</p>
+            <a href="{% url 'post_detail' main_post.id %}" class="main_post_link">
+                <div class="main_post_image">
+                    {% if main_post.image %}
+                        <img src="{{ main_post.image.url }}" alt="Main Post">
+                    {% else %}
+                        <img src="{% static 'twitter_app/default_main.jpg' %}" alt="Main Post">
+                    {% endif %}
                 </div>
                 
-                <span class="title_post">Post by {{ main_post.user.first_name }}</span>
-                
-                <p class="info_post">{{ main_post.content|truncatechars:200 }}</p>
+                <div class="main_post_content">
+                    <p class="category_label">ART</p>
+                    <h2 class="main_post_title">{{ main_post.title|default:"No Title" }}</h2>
+                    <p class="main_post_description">{{ main_post.content|truncatechars:180 }}</p>
+                    
+                    <div class="main_post_meta">
+                        <span class="author_name">{{ main_post.user.get_full_name|default:main_post.user.username }}</span>
+                        <span class="post_date">{{ main_post.created_at|date:"M d, Y" }}</span>
+                    </div>
+                </div>
             </a>
-
-            <div class="info_post_username">
-                <span style="color: #888; font-size: 13px; font-weight: 500;">{{ main_post.user.first_name }}</span>
-                <span style="color: #bbb; font-size: 13px; margin-left: 10px;">{{ main_post.created_at|date:"M d, Y" }}</span>
-            </div>
         {% else %}
             <p>Новых постов пока нет.</p>
         {% endif %}
     </div>
 
     <div class="meddle_block_3_right">
-        <p class="meddle_block_3_rightnow">Right Now</p>
+        <h3 class="rightnow_header">RIGHT NOW</h3>
 
-        <div class="meddle_block_3_rightnow_news">
+        <div class="rightnow_list">
             {% for post in right_now_posts %}
-                <div class="meddle_block_3_rightnow_post">
-                    <div class="meddle_block_3_rightnow_post_image">
+                <div class="rightnow_item">
+                    <div class="rightnow_img">
                         {% if post.image %}
                             <img src="{{ post.image.url }}" alt="">
                         {% else %}
                             <img src="{% static 'twitter_app/logo1.png' %}" alt="">
                         {% endif %}
                     </div>
-                    <div class="post_text_container">
-                        <a href="{% url 'post_detail' post.id %}" style="text-decoration: none; color: inherit;">
-                            <span style="color: black; font-size: 13px; font-weight: bold; margin-left: 9px; display: block;">
-                                {{ post.content|truncatechars:60 }}
-                            </span>
+                    <div class="rightnow_text">
+                        <a href="{% url 'post_detail' post.id %}" class="rightnow_title">
+                            {{ post.title|default:post.content|truncatechars:65 }}
                         </a>
-                        <span style="color: #ce4a2d; font-size: 11px; margin-left: 9px; font-weight: bold;">
-                            {{ post.created_at|date:"M d, Y" }}
-                        </span>
+                        <div class="rightnow_meta">
+                            <span class="meta_icon">f</span> <span class="meta_source">Fortune</span>
+                        </div>
                     </div>
                 </div>
             {% empty %}
-                <p style="font-size: 12px; color: #888; padding: 10px;">Нет свежих новостей.</p>
+                <p class="empty_msg">Нет свежих новостей.</p>
             {% endfor %}
         </div>
 
-        <a href="{% url 'news' %}" class="see_all_btn">See All</a>
+        <a href="{% url 'news' %}" class="see_all_footer_btn">See All</a>
     </div>
 
 </div>
 
-<div class="meddle_block_4">
-    <div class="meddle_block_4_block">
-        <div class="meddle_block_4_left">
-            <p class="meddle_block_4_left_title">Partner With Us</p>
-            <p class="meddle_block_4_left_info">Reach the builders, creators, and decision-makers shaping digital culture.</p>
-            <p class="meddle_block_4_left_items"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone-icon lucide-megaphone"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>Sponsored content & marketing campaigns</p>
-            <p class="meddle_block_4_left_items"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>Event partnerships & activations</p>
-            <p class="meddle_block_4_left_items"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video-icon lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>Video & podcast production</p>
-            <p class="meddle_block_4_left_items"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles-icon lucide-sparkles"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>Custom creative projects</p>
-            <p class="meddle_block_4_left_items"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-user-icon lucide-shield-user"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M6.376 18.91a6 6 0 0 1 11.249.003"/><circle cx="12" cy="11" r="4"/></svg>Strategic consulting & advisory</p>
-            <a href="{% url 'checkverify' %}" class="meddle_block_1_Singin_Startreadings">Work With Us</a>
+<div class="partner_section_wrapper">
+    <div class="partner_card">
+        
+        <div class="partner_content_left">
+            <h2 class="partner_title_main">Partner With Us</h2>
+            <p class="partner_description_text">Reach the builders, creators, and decision-makers shaping digital culture.</p>
+            
+            <div class="features_list_container">
+                <div class="feature_row">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+                    <span>Sponsored content & marketing campaigns</span>
+                </div>
+                <div class="feature_row">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                    <span>Event partnerships & activations</span>
+                </div>
+                <div class="feature_row">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                    <span>Video & podcast production</span>
+                </div>
+                <div class="feature_row">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+                    <span>Custom creative projects</span>
+                </div>
+            </div>
+
+            <a href="{% url 'checkverify' %}" class="btn_work_black">WORK WITH US</a>
         </div>
 
-        <div class="meddle_block_4_right">
-            <img src="{% static 'twitter_app/image_2026-04-04_20-13-23.jpg' %}">
+        <div class="partner_image_right">
+             <img src="{% static 'twitter_app/image_2026-04-04_20-13-23.jpg' %}" alt="Crowd">
         </div>
 
     </div>
-    
 </div>
 
 <div class="wired-divider">
         <div class="label">TOP NEWS</div>
 </div>
 
-
-
-
-
-    <div class="container">
-        <aside class="grid-item sidebar">
-            <h3>Категории</h3>
-            <ul class="cat-list">
-                <li>Разработка</li>
-                <li>Дизайн</li>
-                <li>Маркетинг</li>
-                <li>Криптовалюты</li>
-            </ul>
-            <div class="ad-slot">Рекламный блок</div>
-        </aside>
-
-        <main class="grid-item main-content">
-            <h2>Последние новости</h2>
-            <article class="post-preview">
-                <div class="post-img"></div>
-                <div class="post-text">
-                    <h3>Как CSS Grid изменил мир верстки</h3>
-                    <p>Раньше мы мучались с флоатами и инлайнами, а теперь рисуем сетки словами...</p>
-                </div>
+<div class="container">
+    <aside class="grid-item sidebar">
+        <div class="sidebar_wrapper">
+            {% for post in top_news_posts %}
+            <article class="sidebar_post">
+                <a href="{% url 'post_detail' post.id %}" class="sidebar_link">
+                    <div class="sidebar_img_container">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="">
+                        {% else %}
+                            <div class="img_placeholder"></div>
+                        {% endif %}
+                    </div>
+                    <div class="sidebar_content">
+                        <span class="category_tag">OPEN SESAME</span>
+                        <h3 class="sidebar_title">{{ post.title }}</h3>
+                        <span class="author_tag">BY {{ post.user.first_name|upper }} {{ post.user.last_name|upper }}</span>
+                    </div>
+                </a>
             </article>
-            <article class="post-preview">
-                <div class="post-img"></div>
-                <div class="post-text">
-                    <h3>Subgrid: Новое измерение</h3>
-                    <p>Краткий обзор того, как вложенные сетки упрощают жизнь фронтенд-разработчика.</p>
-                </div>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <main class="grid-item main-content">
+        {% if main_post %}
+        <article class="main_featured_post">
+            <span class="category_tag center">CHANGES</span>
+            <h1 class="main_title">{{ main_post.title }}</h1>
+            <p class="main_subtitle">{{ main_post.text|truncatewords:20 }}</p>
+            <span class="author_tag center">BY {{ main_post.user.first_name|upper }} {{ main_post.user.last_name|upper }}</span>
+            
+            <div class="main_image">
+                {% if main_post.image %}
+                    <img src="{{ main_post.image.url }}" alt="">
+                {% endif %}
+            </div>
+        </article>
+        {% endif %}
+    </main>
+
+    <section class="grid-item widgets">
+        <div class="right_now_wrapper">
+            {% for post in right_now_posts %}
+            <article class="right_post">
+                <a href="{% url 'post_detail' post.id %}">
+                    <h3 class="right_post_title">{{ post.title }}</h3>
+                    <span class="author_tag">BY {{ post.user.first_name|upper }} {{ post.user.last_name|upper }}</span>
+                </a>
             </article>
-        </main>
+            {% endfor %}
+        </div>
+    </section>
 
-        <section class="grid-item widgets">
-            <div class="widget-box">
-                <h4>Курс валют</h4>
-                <p>BTC: $65,000</p>
-                <p>ETH: $3,500</p>
-            </div>
-            <div class="widget-box">
-                <h4>Погода</h4>
-                <p>Москва: +18°C</p>
-            </div>
-        </section>
-
-        <footer class="grid-item footer">
-            <p>&copy; 2026 Профессиональная Grid-Верстка. Все права защищены.</p>
-        </footer>
-    </div>
+</div>
 
 
 
