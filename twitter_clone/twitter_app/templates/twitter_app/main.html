@@ -1,0 +1,25 @@
+{% extends 'twitter_app/base.html' %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center; padding-top: 100px;">
+    
+    <div style="width: 1px; height: 80px; background: linear-gradient(transparent, #eee); margin-bottom: 40px;"></div>
+
+    <div style="text-align: center; max-width: 900px;">
+        <h1 style="font-size: 110px; font-weight: 500; letter-spacing: -6px; margin: 0 0 15px 0; color: #000; line-height: 0.9;">
+            Q-Verse
+        </h1>
+        
+        <p style="font-size: 24px; color: #666; font-weight: 300; line-height: 1.4; margin-bottom: 50px; letter-spacing: -0.5px;">
+            Децентрализованная вселенная для твоих мыслей.<br>
+            <span style="color: #999;">Присоединяйся к сообществу билдеров и исследователей.</span>
+        </p>
+
+        <a href="{% url 'register' %}" class="btn-start" style="font-size: 18px; padding: 22px 70px; border-radius: 20px; display: inline-block;">
+            Start writing
+        </a>
+    </div>
+
+    <div style="margin-top: 100px; width: 1px; height: 120px; background: linear-gradient(#eee, transparent);"></div>
+</div>
+{% endblock %}

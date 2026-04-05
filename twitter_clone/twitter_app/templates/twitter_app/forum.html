@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Debug Layout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="grid-item header">
+            <div class="logo">GRID_NEWS</div>
+            <nav class="top-nav">
+                <a href="#">Главная</a>
+                <a href="#">Статьи</a>
+                <a href="#">Контакты</a>
+            </nav>
+        </header>
+
+        <aside class="grid-item sidebar">
+            <h3>Категории</h3>
+            <ul class="cat-list">
+                <li>Разработка</li>
+                <li>Дизайн</li>
+                <li>Маркетинг</li>
+                <li>Криптовалюты</li>
+            </ul>
+            <div class="ad-slot">Рекламный блок</div>
+        </aside>
+
+        <main class="grid-item main-content">
+            <h2>Последние новости</h2>
+            <article class="post-preview">
+                <div class="post-img"></div>
+                <div class="post-text">
+                    <h3>Как CSS Grid изменил мир верстки</h3>
+                    <p>Раньше мы мучались с флоатами и инлайнами, а теперь рисуем сетки словами...</p>
+                </div>
+            </article>
+            <article class="post-preview">
+                <div class="post-img"></div>
+                <div class="post-text">
+                    <h3>Subgrid: Новое измерение</h3>
+                    <p>Краткий обзор того, как вложенные сетки упрощают жизнь фронтенд-разработчика.</p>
+                </div>
+            </article>
+        </main>
+
+        <section class="grid-item widgets">
+            <div class="widget-box">
+                <h4>Курс валют</h4>
+                <p>BTC: $65,000</p>
+                <p>ETH: $3,500</p>
+            </div>
+            <div class="widget-box">
+                <h4>Погода</h4>
+                <p>Москва: +18°C</p>
+            </div>
+        </section>
+
+        <footer class="grid-item footer">
+            <p>&copy; 2026 Профессиональная Grid-Верстка. Все права защищены.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

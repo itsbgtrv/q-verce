@@ -1,0 +1,50 @@
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>Author: {{ post.user.first_name }}</p>
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" style="max-width: 500px; height: auto; display: block; margin-bottom: 20px;">
+    {% endif %}
+
+    <p>{{ post.content }}</p>
+
+    <hr>
+
+    <h2>Комментарии</h2>
+    {% if comments %}
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <p><strong>{{ comment.user.first_name }}</strong>: {{ comment.text }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Комментариев пока нет</p>
+    {% endif %}
+
+    <hr>
+
+    {% if user.is_authenticated %}
+        <h3>Добавить комментарий</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Отправить</button>
+        </form>
+
+        {# Проверка: если текущий пользователь — автор поста, показываем кнопку редактирования #}
+        {% if user == post.user %}
+            <div style="margin-top: 20px; padding: 10px; border: 1px dashed #ccc;">
+                <h4>Управление постом</h4>
+                <p>Вы автор этого поста. Здесь можно добавить логику редактирования.</p>
+            </div>
+        {% endif %}
+
+    {% else %}
+        <p><a href="{% url 'register' %}">Войдите</a>, чтобы оставить комментарий.</p>
+    {% endif %}
+
+    <p style="margin-top: 30px;"><a href="{% url 'base' %}">← Назад к ленте</a></p>
+
+{% endblock content %}

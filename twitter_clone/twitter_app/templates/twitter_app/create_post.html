@@ -1,0 +1,13 @@
+{% extends 'twitter_app/base.html'%}
+
+{% block content%}
+
+<h1>Создать пост</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ post_form.as_p }}
+    <button type="submit">Опубликовать</button>
+</form>
+
+<p><a href="{% url 'posts'%}">Назад</a></p>
+{% endblock content%}
