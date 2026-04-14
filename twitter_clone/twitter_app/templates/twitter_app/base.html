@@ -4,822 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Q-Verse</title>
-    <style>
-    /* ОБЩИЕ СТИЛИ */
-    body { 
-        font-family: 'Inter', -apple-system, sans-serif; 
-        margin: 0; 
-        background-color: #fff; 
-        overflow-x: hidden; 
-    }
-
-    /* НАВИГАЦИЯ */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 250px;
-        background: #fff;
-    }
-
-    .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: #000;
-        flex: 1;
-    }
-
-    .nav-center {
-        display: flex;
-        justify-content: center;
-        flex: 2;
-    }
-
-    .menu-pills {
-        display: flex;
-        align-items: center;
-        border-radius: 50px; 
-        padding: 12px 35px; 
-        gap: 30px;
-        background-color: #ffffff;
-        border: 1px solid #f0f0f0; 
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
-    }
-
-    .menu-pills a {
-        text-decoration: none;
-        color: #1a1a1a;
-        font-size: 15px;
-        font-weight: 500;
-        transition: 0.2s;
-    }
-
-    .menu-pills a:hover { color: #888; }
-
-    .nav-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 15px;
-        flex: 1;
-    }
-
-    .btn-start {
-        background-color: #4f87ff;
-        color: #fff !important;
-        padding: 10px 22px;
-        border-radius: 15px;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 15px;
-        transition: 0.3s;
-    }
-
-    .btn-start:hover { background-color: #3b71e6; }
-
-    /* ГЛАВНЫЙ БЛОК (Middle Section) */
-    .meddle_block_1 {
-        display: flex;
-        justify-content: space-between;
-        align-items: stretch; /* Растягиваем блоки, чтобы фон был до низа */
-        padding: 0; 
-        margin-top: 55px;
-    }
-
-    .meddle_block_1_text {
-        flex: 1;
-        padding-left: 250px; /* Выравнивание по линии навигации */
-        padding-right: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-
-    .meddle_block_1_text_Join200000 {
-        font-size: 64px;
-        font-weight: 500;
-        margin: 0 0 20px 0;
-        line-height: 1.1;
-        color: #1a1a1a;
-    }
-
-    .meddle_block_1_text_Reachmorereaders {
-        font-size: 20px;
-        color: #666;
-        margin-bottom: 40px;
-        max-width: 500px;
-    }
-
-    .meddle_block_1_Singin {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-    }
-
-    .meddle_block_1_Singin_button {
-        background-color: #4f87ff;
-        color: white;
-        padding: 12px 30px;
-        border-radius: 12px;
-        font-weight: 500;
-        cursor: pointer;
-        margin: 0;
-        text-decoration: none;
-    }
-
-    .meddle_block_1_Singin_Startreading {
-        color: #1a1a1a;
-        font-weight: 500;
-        cursor: pointer;
-        text-decoration: none;
-    }
-
-    /* ПРАВЫЙ БЛОК С КАРТИНКОЙ */
-    .meddle_block_2_info {
-        flex: 1.2;
-        background-color: #261f1d; /* Темный фон */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end; /* Прижимает картинку строго к низу */
-        padding-left: 60px;
-        padding-top: 60px;
-        border-top-left-radius: 40px;
-        overflow: hidden; /* Обрезает лишнее при анимации */
-    }
-
-    .meddle_block_2_image {
-        width: 100%;
-        display: flex;
-        align-items: flex-end; /* Убирает любые зазоры снизу */
-    }
-
-    .meddle_block_2_image img {
-        display: block; /* Убирает встроенный отступ inline-элементов */
-        width: 100%;
-        height: auto !important; /* Игнорируем высоту 70% из HTML */
-        border-top-left-radius: 40px;
-        
-        /* ПЛАВНАЯ АНИМАЦИЯ */
-        transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
-        will-change: transform; /* Подсказка браузеру для плавности */
-    }
-
-    /* ПЛАВНЫЙ ЭФФЕКТ ПРИ НАВЕДЕНИИ */
-    .meddle_block_2_image img:hover {
-        transform: translateY(-15px); /* Плавный подъем вверх */
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    /* 1. Главный контейнер (равняем по шапке) */
-.section-container {
-    padding: 0 250px; 
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 60px; /* Отступ от верхнего блока */
-    font-family: "Helvetica", Arial, sans-serif;
-}
-
-/* 2. Линия-разделитель */
-.wired-divider {
-    border-top: 2px solid #000;
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-/* 3. Черная плашка REVIEWS */
-.label {
-    background-color: #000;
-    color: #fff;
-    display: inline-block;
-    padding: 4px 12px;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 14px;
-    position: absolute;
-    top: 0; /* Прижимаем к линии */
-    left: 0;
-}
-
-/* 4. Сетка на 4 колонки */
-.strip-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding-top: 20px; /* Отступ от плашки */
-}
-
-/* 5. Карточка новости */
-.strip-item {
-    display: flex;
-    justify-content: space-between;
-    text-decoration: none;
-    color: #000;
-    border-right: 1px solid #e0e0e0;
-    padding-right: 15px; /* Маленький отступ до линии-разделителя */
-}
-
-/* Убираем линию у последней карточки в ряду */
-.strip-item:last-child {
-    border-right: none;
-}
-
-.item-category {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.item-title {
-    font-size: 15px;
-    line-height: 1.2;
-    margin: 0;
-    font-weight: 600;
-}
-
-/* 6. Картинки */
-.item-img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    margin-left: 10px;
-    flex-shrink: 0; /* Чтобы картинка не сжималась */
-}
-
-
-/* Общий контейнер */
-.meddle_block_3 {
-    display: grid;
-    grid-template-columns: 1fr 340px; /* Справа фиксированная колонка */
-    gap: 30px;
-    max-width: 1200px;
-    margin: 20px auto;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-}
-
-/* --- ЛЕВАЯ ЧАСТЬ --- */
-.main_post_link {
-    text-decoration: none;
-    color: #000;
-}
-
-.main_post_image img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 12px; /* Закругленные углы как на скрине */
-}
-
-.category_label {
-    color: #b1b1b1;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 15px 0 5px 0;
-    text-transform: uppercase;
-}
-
-.main_post_title {
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 15px;
-    letter-spacing: -0.5px;
-}
-
-.main_post_description {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-.main_post_meta {
-    font-size: 13px;
-    color: #888;
-}
-
-.author_name { font-weight: 600; margin-right: 10px; }
-
-/* --- ПРАВАЯ ЧАСТЬ --- */
-.meddle_block_3_right {
-    border: 1px solid #e0e0e0; /* Рамка вокруг блока */
-    border-radius: 12px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.rightnow_header {
-    padding: 20px 20px 10px 20px;
-    font-size: 18px;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    margin: 0;
-}
-
-.rightnow_list {
-    flex-grow: 1;
-}
-
-.rightnow_item {
-    display: flex;
-    padding: 15px 20px;
-    border-bottom: 1px solid #f0f0f0;
-    gap: 12px;
-}
-
-.rightnow_img img {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.rightnow_title {
-    text-decoration: none;
-    color: #000;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.3;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.rightnow_title:hover { color: #4f87ff; }
-
-.rightnow_meta {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: #666;
-}
-
-.meta_icon {
-    font-style: italic;
-    font-weight: bold;
-    color: #0066cc;
-}
-
-/* Кнопка See All внизу */
-.see_all_footer_btn {
-    text-align: center;
-    padding: 15px;
-    text-decoration: none;
-    color: #000;
-    font-size: 13px;
-    font-weight: bold;
-    border-top: 1px solid #f0f0f0;
-}
-
-.see_all_footer_btn:hover { background-color: #f9f9f9; border-radius: 0 0 12px 12px; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Внешний контейнер */
-.partner_section_wrapper {
-    width: 100%;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-/* Сама карточка */
-.partner_card {
-    background-color: #f1f3f6;
-    border-radius: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;   /* Центрирует всю группу (текст + фото) внутри серого фона */
-    padding: 30px 40px;        /* Еще меньше вертикальные отступы */
-    gap: 80px;                 /* Увеличили зазор, чтобы текст и фото разошлись от краев к центру */
-    overflow: hidden;
-}
-
-/* Левая колонка с текстом */
-.partner_content_left {
-    flex: 0 1 auto;            /* Блок теперь не растягивается, а занимает место по контенту */
-    max-width: 420px;          /* Чуть сузили, чтобы блок выглядел аккуратнее */
-    text-align: left;          /* Возвращаем выравнивание текста по левому краю */
-}
-
-.partner_title_main {
-    font-family: 'Inter', sans-serif;
-    font-size: 36px;           /* Компактный размер как на макете */
-    font-weight: 900;
-    letter-spacing: -1.2px;
-    line-height: 1.1;
-    margin-bottom: 10px;
-    color: #000;
-}
-
-.partner_description_text {
-    font-size: 15px;
-    color: #444;
-    line-height: 1.4;
-    margin-bottom: 20px;
-}
-
-/* Список услуг */
-.feature_row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-}
-
-/* Кнопка */
-.btn_work_black {
-    display: inline-block;
-    background-color: #1a1a1a;
-    color: #fff !important;
-    padding: 12px 30px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 10px;
-}
-
-/* Правая часть с картинкой */
-.partner_image_right {
-    flex: 0 1 auto;
-}
-
-.partner_image_right img {
-    width: 100%;
-    max-width: 350px;          /* Маленькая картинка = низкая карточка */
-    height: auto;
-    border-radius: 20px;
-    display: block;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.title_post {
-    font-size: 36px;
-    font-weight: 800;
-    line-height: 1.1;
-    margin: 10px 0;
-    display: block;
-    letter-spacing: -1px;
-}
-
-.info_post {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-/* Основной контейнер с серым фоном НА ВЕСЬ ЭКРАН */
-/* Основной контейнер на всю ширину с серым фоном */
-.meddle_block_4 {
-    background-color: #f3f4f6; /* Светло-серый фон как на скрине */
-    width: 100%;
-    padding: 60px 0;
-    margin: 40px 0;
-    display: flex;  
-    justify-content: center;
-}
-
-/* Ограничитель контента по центру */
-.meddle_block_4_block {
-    max-width: 1100px;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative; /* Для позиционирования картинки, если нужно */
-}
-
-/* Левая часть с текстом */
-.meddle_block_4_left {
-    flex: 1;
-    max-width: 600px;
-}
-
-.meddle_block_4_left_title {
-    font-size: 42px;
-    font-weight: 700;
-    font-family: serif; /* На скрине шрифт с засечками */
-    margin-bottom: 10px;
-    color: #000;
-}
-
-.meddle_block_4_left_info {
-    font-size: 18px;
-    color: #444;
-    margin-bottom: 25px;
-}
-
-/* Стили для пунктов списка с иконками */
-.meddle_block_4_left_items {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 15px;
-    color: #333;
-}
-
-.meddle_block_4_left_items svg {
-    width: 20px;
-    height: 20px;
-    color: #666; /* Цвет иконок */
-}
-
-/* Кнопка */
-.meddle_block_1_Singin_Startreadings {
-    display: inline-block;
-    margin-top: 30px;
-    background-color: #1a1a1a;
-    color: #ffffff;
-    padding: 12px 28px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 13px;
-    transition: background 0.3s;
-}
-
-.meddle_block_1_Singin_Startreadings:hover {
-    background-color: #000;
-}
-
-/* Правая часть с картинкой */
-.meddle_block_4_right {
-    flex: 0 0 400px;
-    position: relative;
-}
-
-.meddle_block_4_right img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    /* Создаем эффект выступа за пределы серого блока вниз */
-    transform: translateY(20px); 
-    display: block;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 1. Глобальные настройки контейнера */
-.container {
-    display: grid;
-    max-width: 1440px;
-    margin: 0 auto;
-    /* Три колонки: Сайдбар (300px), Центр (гибкий), Правая часть (280px) */
-    grid-template-columns: 300px 1fr 280px;
-    gap: 0; /* Убираем gap, так как будем использовать border и padding */
-    background-color: #fff;
-    font-family: 'Arial', sans-serif;
-}
-
-/* 2. Общие стили для всех колонок */
-.grid-item {
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* 3. ЛЕВАЯ КОЛОНКА (Sidebar) */
-.sidebar {
-    border-right: 1px solid #eee; /* Вертикальная линия */
-}
-
-.sidebar_post {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
-}
-
-.sidebar_link {
-    display: flex;
-    gap: 15px;
-    text-decoration: none;
-    color: #000;
-}
-
-.sidebar_img_container {
-    width: 80px;
-    height: 80px;
-    flex-shrink: 0;
-}
-
-.sidebar_img_container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.sidebar_title {
-    font-size: 16px;
-    line-height: 1.2;
-    font-weight: 800;
-    margin: 4px 0;
-}
-
-/* 4. ЦЕНТРАЛЬНАЯ КОЛОНКА (Main Content) */
-.main-content {
-    padding: 30px 50px;
-    text-align: center;
-}
-
-.main_title {
-    font-size: 52px;
-    font-weight: 900;
-    line-height: 0.95;
-    margin: 15px 0;
-    letter-spacing: -1px;
-    text-transform: none;
-}
-
-.main_subtitle {
-    font-size: 18px;
-    line-height: 1.4;
-    color: #444;
-    margin-bottom: 20px;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.main_image img {
-    width: 100%;
-    max-height: 400px;
-    margin-top: 20px;
-    /* Можно добавить filter: grayscale(1); если хочешь ЧБ как на скрине */
-}
-
-/* 5. ПРАВАЯ КОЛОНКА (Widgets / Right Now) */
-.widgets {
-    border-left: 1px solid #eee; /* Вертикальная линия справа */
-}
-
-.right_post {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
-}
-
-.right_post a {
-    text-decoration: none;
-    color: #000;
-}
-
-.right_post_title {
-    font-size: 19px;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 8px;
-}
-
-/* 6. ТЕГИ (Категории и Авторы) */
-.category_tag {
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.author_tag {
-    font-size: 10px;
-    font-weight: 700;
-    color: #333;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-
-
-
-
-
-
-
-
-
-
-</style>
+    <link rel="stylesheet" href="{% static 'twitter_app/base.css' %}">
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="{% url 'base' %}" class="nav-left">
-            <img src="{% static 'twitter_app/image_2026-04-01_20-08-09-removebg-preview.png' %}" style="height: 30px;">
-            <span style="font-size: 22px; font-weight: 800; letter-spacing: -1px;">Q-Verse</span>
+<nav class="navbar">
+    <div class="nav-side nav-left-side">
+        <button class="burger-btn" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+<div class="nav-main-content">
+        <a href="{% url 'base' %}" class="logo-wrapper">
+            <img src="{% static 'twitter_app/image_2026-04-01_20-08-09-removebg-preview.png' %}" class="logo-img">
+            <span class="logo-text">Qverce</span>
         </a>
+        
+        <div class="menu-links">
+            <a href="{% url 'base' %}">EXPLORE</a>
+            <a href="{% url 'forum' %}">FORUM</a>
+            <a href="{% url 'news' %}">NEWS</a>
+            <a href="{% url 'joblist' %}">JOBLIST</a>
 
-        <div class="nav-center">
-            <div class="menu-pills">
-                <a href="{% url 'base' %}">Explore</a>
-                <a href="{% url 'forum' %}">Forum</a>
-                <a href="{% url 'news' %}">News</a>
-                <a href="{% url 'joblist' %}">Joblist</a>
-            </div>
-        </div>
 
-        <div class="nav-right">
-            {% if user.is_authenticated %}
-                <span style="color: #888; font-size: 14px;">{{ user.first_name }}</span>
-                <form action="{% url 'logout' %}" method="post" style="margin: 0;">
-                    {% csrf_token %}
-                    <button type="submit" style="background:none; border:none; cursor:pointer; font-weight:500;">Выйти</button>
-                </form>
-            {% else %}
-                <a href="{% url 'register' %}" class="btn-start">Start writing</a>
-            {% endif %}
         </div>
-    </nav>
+    </div>
+
+    <div class="nav-side nav-right-side">
+        {% if user.is_authenticated %}
+            <span class="user-name">{{ user.first_name }}</span>
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-login">ВЫЙТИ</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn-login">SIGN IN</a>
+            <a href="{% url 'register' %}" class="btn-subscribe">SUBSCRIBE</a>
+        {% endif %}
+    </div>
+</nav>
 
     <nav class="meddle_block_1">
 
@@ -880,12 +106,12 @@
                 </div>
                 
                 <div class="main_post_content">
-                    <p class="category_label">ART</p>
+                    <p class="category_label">{{main_post.category}}</p>
                     <h2 class="main_post_title">{{ main_post.title|default:"No Title" }}</h2>
                     <p class="main_post_description">{{ main_post.content|truncatechars:180 }}</p>
                     
                     <div class="main_post_meta">
-                        <span class="author_name">{{ main_post.user.get_full_name|default:main_post.user.username }}</span>
+                        <span class="author_name">{{ main_post.user.first_name|default:main_post.user.username }}</span>
                         <span class="post_date">{{ main_post.created_at|date:"M d, Y" }}</span>
                     </div>
                 </div>
@@ -963,27 +189,27 @@
     </div>
 </div>
 
-<div class="wired-divider">
-        <div class="label">TOP NEWS</div>
+<div class="news-line-breaker">
+    <div class="line-label">TODAY'S PICKS</div>
 </div>
 
-<div class="container">
-    <aside class="grid-item sidebar">
-        <div class="sidebar_wrapper">
+<div class="magazine-grid">
+    <aside class="story-deck">
+        <div class="deck-scroll">
             {% for post in top_news_posts %}
-            <article class="sidebar_post">
-                <a href="{% url 'post_detail' post.id %}" class="sidebar_link">
-                    <div class="sidebar_img_container">
+            <article class="mini-entry">
+                <a href="{% url 'post_detail' post.id %}" class="entry-link">
+                    <div class="entry-visual">
                         {% if post.image %}
-                            <img src="{{ post.image.url }}" alt="">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}">
                         {% else %}
-                            <div class="img_placeholder"></div>
+                            <div class="visual-empty"></div>
                         {% endif %}
                     </div>
-                    <div class="sidebar_content">
-                        <span class="category_tag">OPEN SESAME</span>
-                        <h3 class="sidebar_title">{{ post.title }}</h3>
-                        <span class="author_tag">BY {{ post.user.first_name|upper }} {{ post.user.last_name|upper }}</span>
+                    <div class="entry-body">
+                        <span class="label-accent">CALLED OUT</span>
+                        <h3 class="entry-headline">{{ post.title }}</h3>
+                        <span class="byline">BY {{ post.user.get_full_name|upper }}</span>
                     </div>
                 </a>
             </article>
@@ -991,36 +217,82 @@
         </div>
     </aside>
 
-    <main class="grid-item main-content">
+    <main class="feature-hub">
         {% if main_post %}
-        <article class="main_featured_post">
-            <span class="category_tag center">CHANGES</span>
-            <h1 class="main_title">{{ main_post.title }}</h1>
-            <p class="main_subtitle">{{ main_post.text|truncatewords:20 }}</p>
-            <span class="author_tag center">BY {{ main_post.user.first_name|upper }} {{ main_post.user.last_name|upper }}</span>
+        <article class="hero-block">
+            <span class="label-accent centered">SATANIC PANIC</span>
             
-            <div class="main_image">
+            <a href="{% url 'post_detail' main_post.id %}" class="hero-link">
+                <h1 class="hero-title">{{ main_post.title }}</h1>
+            </a>
+
+            <p class="hero-summary">{{ main_post.text|truncatewords:25 }}</p>
+            <span class="byline centered">BY {{ main_post.user.get_full_name|upper }}</span>
+
+            <div class="hero-frame">
                 {% if main_post.image %}
-                    <img src="{{ main_post.image.url }}" alt="">
+                    <img src="{{ main_post.image.url }}" alt="{{ main_post.title }}">
                 {% endif %}
+            </div>
+
+            <div class="sub-feature-row">
+                <div class="sub-column">
+                    <span class="sub-label">SAVE THIS POST</span>
+                    <h4 class="sub-title">The Internet's Most Powerful Archiving Tool is in Peril</h4>
+                    <p class="sub-text">As major news outlets cut off the Wayback Machine...</p>
+                    <span class="byline">BY KATE KNIBBS</span>
+                </div>
+                <div class="sub-column">
+                    <span class="sub-label">WALK AND TALK</span>
+                    <h4 class="sub-title">The Dumbest Hack of the Year Exposed a Real Problem</h4>
+                    <p class="sub-text">Last April, a hacker hijacked crosswalk announcements...</p>
+                    <span class="byline">BY PARESH DAVE</span>
+                </div>
             </div>
         </article>
         {% endif %}
     </main>
 
-    <section class="grid-item widgets">
-        <div class="right_now_wrapper">
+    <section class="trending-panel">
+        <div class="panel-header">TRENDING STORIES</div>
+        <div class="panel-list">
             {% for post in right_now_posts %}
-            <article class="right_post">
+            <article class="text-snack">
                 <a href="{% url 'post_detail' post.id %}">
-                    <h3 class="right_post_title">{{ post.title }}</h3>
-                    <span class="author_tag">BY {{ post.user.first_name|upper }} {{ post.user.last_name|upper }}</span>
+                    <h3 class="snack-title">{{ post.title }}</h3>
+                    <span class="byline">BY {{ post.user.get_full_name|upper }}</span>
                 </a>
             </article>
             {% endfor %}
+            
+            <div class="dark-promo-box">
+                <img src="{% static 'twitter_app/image_2026-04-04_20-13-23.jpg' %}" alt="Promo">
+                <div class="promo-content">
+                    <span class="promo-label">UNCANNY VALLEY</span>
+                    <h4 class="promo-title">OpenAI and Musk Fight Again; DOJ Mishandles Data</h4>
+                    <span class="byline">BY BRIAN BARRETT</span>
+                </div>
+            </div>
         </div>
     </section>
+</div>
 
+<div class="strip-grid2">
+    {% for post in strip_posts2 %}
+        <a href="{% url 'post_detail' post.id %}" class="strip-item2">
+            <div class="item-content2">
+                <span class="item-category2">NEW POST</span>
+                <h3 class="item-title">{{ post.content|truncatechars:45 }}</h3>
+            </div>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="post img" class="item-img">
+            {% else %}
+                <img src="{% static 'twitter_app/default.jpg' %}" alt="default" class="item-img">
+            {% endif %}
+        </a>
+    {% empty %}
+        <p style="padding: 20px; color: #888;">Пока нет доступных обзоров.</p>
+    {% endfor %}
 </div>
 
 
@@ -1028,9 +300,534 @@
 
 
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+
+
+
+
+
+
+
+
+
+<div class="wired-page">
+    <header class="hero-banner" style="background-image: url('{% static 'twitter_app/502f7f2c-75ba-4871-8625-ef40937d74b3.jpg' %}');">
+        <div class="hero-content">
+            <span class="zoom-in">ZOOM IN</span>
+            <h1>Insights at the intersection of technology, power, and culture</h1>
+            <p>Get access to exclusive benefits including 5 all-new premium newsletters.</p>
+        </div>
+    </header>
+
+    <div class="subscription-container">
+        <div class="tabs-wrapper">
+            <div class="tab-pill">
+                <button class="tab-btn active" onclick="switchTab('digital')">DIGITAL</button>
+                <button class="tab-btn" onclick="switchTab('print')">PRINT + DIGITAL</button>
+            </div>
+        </div>
+
+        <form action="{% url 'create-checkout-session' %}" method="POST" id="payment-form">
+            {% csrf_token %}
+            
+            <div id="digital-grid" class="pricing-grid">
+                <label class="card" for="annual">
+                    <span class="badge">Most Popular</span>
+                    <div class="card-title">
+                        <input type="radio" name="plan" value="annual" id="annual" checked>
+                        Annual Digital Access
+                    </div>
+                    <div class="price-info"><span class="old-price">$4</span> <strong>$2/month</strong></div>
+                    <div class="promo-highlight">First month FREE</div>
+                    <p class="card-details">Charged as $24 for one year. Automatically renews at $48/year.</p>
+                </label>
+
+                <label class="card" for="monthly">
+                    <div class="card-title">
+                        <input type="radio" name="plan" value="monthly" id="monthly">
+                        4 Week Digital Access
+                    </div>
+                    <div class="price-info"><strong>$1/week for 4 weeks</strong></div>
+                    <p class="card-details">Charged as $4 for 4 weeks. Cancel or pause anytime.</p>
+                </label>
+            </div>
+
+            <div id="print-grid" class="pricing-grid" style="display: none;">
+                <label class="card center-card" for="print_annual">
+                    <div class="card-title">
+                        <input type="radio" name="plan" value="print_annual" id="print_annual">
+                        Annual Print + Digital Access
+                    </div>
+                    <div class="price-info"><strong>$80/year</strong></div>
+                    <p class="card-details">This introductory offer is charged as $80 at time of order. Automatically renews at $80/year. Includes home delivery of the magazine.</p>
+                </label>
+            </div>
+            <div class="payment-methods">
+                💳 Card &nbsp;  Pay &nbsp; G Pay &nbsp; 🅿️ PayPal
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">GET DIGITAL ACCESS</button>
+            
+            <p class="cancel-text">Cancel or pause anytime.</p>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main-container">
+
+    <section class="brands-section">
+        <h2 class="section-title">Trusted by the World's Leading Brands</h2>
+        
+        <div class="logo-grid">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-47-24.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-04.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-12.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-15.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-19.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-30.jpg' %}" alt="Christie's" class="brand-logo">
+
+        </div>
+
+        <div class="logo-grid second-row">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-49-07.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-51.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-38.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-49-03.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-49-11.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-49-15.jpg' %}" alt="Christie's" class="brand-logo">
+
+        </div>
+
+        <div class="logo-grid third-row">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-49-21.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-48-26.jpg' %}" alt="Christie's" class="brand-logo">
+            <img src="{% static 'twitter_app/image_2026-04-10_20-49-25.jpg' %}" alt="Christie's" class="brand-logo">
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+<main class="magazine-layout">
+
+  <section class="editorial-header">
+    <h1 class="editorial-header__title">Private<br>Newsletters</h1>
+    <p class="editorial-header__excerpt">The stories that shape capital, culture, and code — before they trend.</p>
+    <div class="editorial-header__status">Straight into your inbox.</div>
+  </section>
+
+  <section class="feed-grid">
+    
+    {% for post in strip_posts3 %}
+    <article class="entry-tile entry-tile--vibrant">
+        {% if post.image %}<img src="{{ post.image.url }}" class="tile-bg">{% endif %}
+        <div class="tile-content">
+            <span class="brand-glyph">{{ post.category }}</span>
+            <span class="brand-label">NEWSLETTER</span>
+        </div>
+    </article>
+    {% endfor %}
+
+    {% for post in strip_posts4 %}
+    <article class="entry-tile entry-tile--crypto">
+        {% if post.image %}<img src="{{ post.image.url }}" class="tile-bg">{% endif %}
+        <div class="tile-content">
+            <span class="brand-glyph">{{ post.category }}</span>
+        </div>
+    </article>
+    {% endfor %}
+
+    {% for post in strip_posts5 %}
+    <article class="entry-tile entry-tile--liquid">
+        {% if post.image %}<img src="{{ post.image.url }}" class="tile-bg">{% endif %}
+        <div class="tile-content">
+            <span class="brand-italic">{{ post.category }}</span>
+        </div>
+    </article>
+    {% endfor %}
+
+    {% for post in strip_posts6 %}
+    <article class="entry-tile entry-tile--minimal">
+        {% if post.image %}<img src="{{ post.image.url }}" class="tile-bg">{% endif %}
+        <div class="tile-content">
+            <span class="brand-serif">{{ post.category }}</span>
+        </div>
+    </article>
+    {% endfor %}
+
+  </section>
+</main>
+
+
+
+
+
+
+
+
+
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-container">
+            
+            <details class="faq-item">
+                <summary>What is Now Media?</summary>
+                <div class="faq-content">
+                    <p>The Voice of Digital Culture — Now Media delivers intelligent, insightful journalism from the edge of what's next — where crypto, culture, AI, and policy collide. We shape the future with context and clarity, helping you stay ahead in a world where innovation never sleeps. In a space where transformation happens daily, there's only one moment that matters: the now.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Who is Now Media for?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>What's included in each membership tier?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How often will I get content?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I cancel anytime?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Is this only about crypto or Web3?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Do you accept pitches or contributors?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How is this different from Substack or mainstream news?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How do NowPass holders get access?</summary>
+                <div class="faq-content"><p>Ответ...</p></div>
+            </details>
+
+        </div>
+    </section>
+
+
+
+    <header class="hero_banner_upfooter">
+
+    </header>
+
+    <header class="hero_banner_upfooter2">
+        <img src="{% static 'twitter_app/Снимок экрана 2026-04-13 202021.png' %}">
+    </header>
+
+
+
+
+
+
+
+
+
+
+<footer class="wired-footer">
+  <div class="footer-container">
+    <div class="footer-header">
+      <div class="logo">WIRED</div>
+      <p class="description">
+        WIRED is obsessed with what comes next. Through rigorous investigations and game-changing reporting, we tell stories that don’t just reflect the moment—they help create it. When you look back in 10, 20, even 50 years, WIRED will be the publication that led the story of the present, mapped the people, products, and ideas defining it, and explained how those forces forged the future. WIRED: For Future Reference.
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="footer-links">
+      <div class="link-column">
+        <h3>MORE FROM WIRED</h3>
+        <ul>
+          <li><a href="#">Subscribe</a></li>
+          <li><a href="#">Newsletters</a></li>
+          <li><a href="#">Livestreams</a></li>
+          <li><a href="#">Travel</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">WIRED Staff</a></li>
+        </ul>
+      </div>
+      <div class="link-column">
+        <h3 class="empty-h3">&nbsp;</h3>
+        <ul>
+          <li><a href="#">WIRED Education</a></li>
+          <li><a href="#">Editorial Standards</a></li>
+          <li><a href="#">Archive</a></li>
+          <li><a href="#">RSS</a></li>
+          <li><a href="#">Site Map</a></li>
+          <li><a href="#">Accessibility Help</a></li>
+        </ul>
+      </div>
+      <div class="link-column">
+        <h3>REVIEWS AND GUIDES</h3>
+        <ul>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Buying Guides</a></li>
+          <li><a href="#">Streaming Guides</a></li>
+        </ul>
+      </div>
+      <div class="link-column">
+        <h3 class="empty-h3">&nbsp;</h3>
+        <ul>
+          <li><a href="#">Wearables</a></li>
+          <li><a href="#">Coupons</a></li>
+          <li><a href="#">Gift Guides</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="footer-utility">
+      <div class="utility-col">
+        <a href="#">Advertise</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Manage Account</a>
+      </div>
+      <div class="utility-col">
+        <a href="#">Jobs</a>
+        <a href="#">Press Center</a>
+        <a href="#">Condé Nast Store</a>
+      </div>
+      <div class="utility-col">
+        <a href="#">User Agreement</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Your California Privacy Rights</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        © 2026 Condé Nast. All rights reserved. WIRED may earn a portion of sales from products that are purchased through our site as part of our Affiliate Partnerships with retailers. The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of Condé Nast. <a href="#">Ad Choices</a>
+      </div>
+      <div class="social-icons">
+        <span>f</span> <span>𝕏</span> <span>p</span> <span>▶</span> <span>●</span> <span>d</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">ň</div>
+    <button class="close-btn" onclick="toggleSidebar()">✕</button>
+  </div>
+
+  <div class="menu">
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        TOPICS <span class="chevron">▼</span>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="#">Profiles</a></li>
+          <li><a href="#">AI</a></li>
+          <li><a href="#">Art</a></li>
+          <li><a href="#">Crypto</a></li>
+          <li><a href="#">Culture</a></li>
+          <li><a href="#">Policy</a></li>
+          <li><a href="#">Guides</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        DISCOVERY <span class="chevron">▼</span>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="#">Featured</a></li>
+          <li><a href="#">Collections</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        COMPANY <span class="chevron">▼</span>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sidebar-footer">
+    <a href="#" class="btn btn-outline">WORK WITH US</a>
+    <div class="separator"></div>
+    <a href="#" class="btn btn-solid">SUBSCRIBE</a>
+    <a href="#" class="btn btn-outline">SIGN IN</a>
+  </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function switchTab(type) {
+        const digitalGrid = document.getElementById('digital-grid');
+        const printGrid = document.getElementById('print-grid');
+        const btns = document.querySelectorAll('.tab-btn');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Смена активной кнопки
+        btns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        if (type === 'digital') {
+            digitalGrid.style.display = 'grid';
+            printGrid.style.display = 'none';
+            submitBtn.innerText = 'GET DIGITAL ACCESS';
+            document.getElementById('annual').checked = true; // Сбрасываем выбор
+        } else {
+            digitalGrid.style.display = 'none';
+            printGrid.style.display = 'grid';
+            submitBtn.innerText = 'GET PRINT + DIGITAL ACCESS';
+            document.getElementById('print_annual').checked = true;
+        }
+    }
+
+
+
+
+
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+
+
+
+
+
+
+
+
+// Логика открытия/закрытия бокового меню
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    
+    sidebar.classList.toggle('open');
+    
+    if(sidebar.classList.contains('open')) {
+        overlay.style.display = 'block';
+        // Небольшая задержка для плавного появления
+        setTimeout(() => overlay.classList.add('show'), 10);
+    } else {
+        overlay.classList.remove('show');
+        setTimeout(() => overlay.style.display = 'none', 300);
+    }
+  }
+
+  // Логика работы аккордеона (выпадающих списков)
+  function toggleAccordion(headerElement) {
+    const item = headerElement.parentElement;
+    
+    // Если хочешь, чтобы при открытии одного закрывались другие, раскомментируй код ниже:
+    
+    document.querySelectorAll('.accordion-item').forEach(el => {
+      if(el !== item) el.classList.remove('active');
+    });
+    
+    
+    item.classList.toggle('active');
+  }
+
+
+
+
+
+
+
+
+
+</script>
 
 </body>
 </html>

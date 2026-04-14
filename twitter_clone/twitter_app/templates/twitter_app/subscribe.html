@@ -1,0 +1,26 @@
+{% extends 'twitter_app/base.html' %}
+{% block content %}
+<style>
+    /* Вставь сюда CSS для .pricing-grid и .card, который я давал выше */
+</style>
+
+<div class="container">
+    <h2>Choose your plan</h2>
+    <form action="{% url 'create-checkout-session' %}" method="POST">
+        {% csrf_token %}
+        <div class="subscription-container">
+            <div class="pricing-grid">
+                <div class="card">
+                    <input type="radio" name="plan" value="annual" id="annual" checked>
+                    <label for="annual"><strong>Annual Plan</strong> - $2/mo</label>
+                </div>
+                <div class="card">
+                    <input type="radio" name="plan" value="monthly" id="monthly">
+                    <label for="monthly"><strong>4 Week Plan</strong> - $1/week</label>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">ОПЛАТИТЬ ПОДПИСКУ</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

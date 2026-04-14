@@ -1,0 +1,1757 @@
+body { 
+    font-family: 'Inter', -apple-system, sans-serif; 
+    margin: 0; 
+    background-color: #fff; 
+    overflow-x: hidden; 
+    /* 1. Добавляем отступ сверху, чтобы контент не залез под навбар */
+    padding-top: 15px; 
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2px 1% 10px 1%; /* Использование % вместо px для гибкости */
+    border-bottom: 1px solid #eee;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Боковые блоки занимают равное место, чтобы центр был идеально по центру */
+.nav-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav-right-side {
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Центральный блок с колонным расположением */
+.nav-main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Уменьшили gap между логотипом и меню с 15px до 8px */
+    gap: 15px; 
+}
+
+/* Стили логотипа */
+.logo-wrapper {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    opacity: 1;
+    /* Плавный возврат обратно, когда скроллим вверх */
+    transition: opacity 0.2s ease; 
+}
+
+.logo-img {
+    height: 40px; /* Чуть уменьшили, чтобы блок не раздувался */
+    width: auto;
+}
+
+.logo-text {
+    font-family: 'Lora', serif;
+    /* Увеличили шрифт до 28px (был 24px) */
+    font-size: 28px; 
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    line-height: 0.9; /* Прижали строку плотнее */
+}
+
+
+/* Состояние при скролле */
+.navbar.scrolled .logo-wrapper {
+    /* Мгновенно скрываем (без transition) */
+    opacity: 0;
+    visibility: hidden;
+    transition: none; 
+
+    /* Запускаем появление через 0.5с */
+    animation: logoAppear 0.3s forwards;
+    animation-delay: 0.5s;
+    
+    /* Твои настройки для компактного вида */
+    flex-direction: row;
+    gap: 8px;
+}
+
+/* Настройки логотипа конкретно внутри скролла (если нужно изменить направление) */
+.navbar.scrolled .logo-wrapper {
+    flex-direction: row; /* Меняем на горизонтальный вид при скролле */
+    gap: 8px;
+}
+
+/* Ключевые кадры: резко прозрачный -> плавно видимый */
+@keyframes logoAppear {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}  
+
+
+
+
+/* Меню под логотипом */
+.menu-links {
+    display: flex;
+    gap: 30px;
+}
+
+.menu-links a {
+    text-decoration: none;
+    color: #666;
+    font-size: 11px; /* Слегка уменьшили шрифт меню для баланса */
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+}
+
+.menu-links a:hover {
+    color: #000;
+}
+
+/* Кнопки справа */
+.btn-login {
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.btn-subscribe {
+    text-decoration: none;
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Бургер (простая имитация) */
+.burger-btn {
+    background: none;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.burger-btn span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #333;
+}
+
+
+/* Общие переходы для плавности */
+.navbar, .nav-main-content, .logo-wrapper, .logo-text, .logo-img {
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- СОСТОЯНИЕ ПРИ СКРОЛЛЕ --- */
+
+.navbar.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 1%;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+/* Левая часть: логотип и название */
+.navbar.scrolled .nav-left-side {
+    flex: 1; /* Занимает 1 часть пространства */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Центр: ТУТ ГЛАВНОЕ ИЗМЕНЕНИЕ */
+.navbar.scrolled .nav-main-content {
+    flex: 2; /* Даем центру больше места */
+    display: flex;
+    flex-direction: row; /* В линию */
+    justify-content: center; /* МЕНЮ ТЕПЕРЬ СТРОГО ПО ЦЕНТРУ ЭКРАНА */
+    align-items: left;
+}
+
+/* Скрываем логотип в центральном блоке, если он у вас там дублировался, 
+   или просто настраиваем обертку бренда внутри центра */
+.navbar.scrolled .logo-wrapper {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto; /* Прижимает логотип влево внутри центрального контейнера */
+}
+
+/* Правая часть: кнопки */
+.navbar.scrolled .nav-right-side {
+    flex: 1; /* Занимает тоже 1 часть пространства, как и левая */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Название Qverce при скролле */
+.navbar.scrolled .logo-text {
+    font-size: 18px; /* Компактно */
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+.navbar.scrolled .logo-img {
+    height: 28px;
+}
+
+/* Ссылки меню */
+.navbar.scrolled .menu-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 20px;;
+
+}
+
+
+
+
+
+/* --- АДАПТИВНОСТЬ (Медиа-запросы) --- */
+
+/* Ноутбуки и планшеты (до 1024px) */
+@media (max-width: 1024px) {
+    .menu-links { gap: 15px; }
+    .logo-text { font-size: 22px; }
+    .navbar { padding: 5px 20px; }
+}
+
+/* Планшеты и большие телефоны (до 768px) */
+@media (max-width: 768px) {
+    /* Скрываем обычное меню, так как оно не влезет в ряд с кнопками */
+    .menu-links {
+        display: none; 
+    }
+
+    .nav-side { flex: none; }
+    
+    .logo-text { font-size: 20px; }
+    .logo-img { height: 30px; }
+
+    /* В режиме скролла на мобилке центровка меню по центру экрана может мешать логотипу */
+    .navbar.scrolled .menu-links {
+        display: none; /* На мобилках лучше использовать бургер-меню */
+    }
+}
+
+/* Телефоны (до 480px) */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    /* Скрываем кнопку подписки или логина, чтобы оставить место под логотип */
+    .btn-login {
+        display: none; 
+    }
+
+    .btn-subscribe {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    /* Когда скроллим на очень маленьком экране */
+    .navbar.scrolled {
+        padding: 8px 15px;
+    }
+    
+    .navbar.scrolled .logo-wrapper {
+        gap: 5px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Основной контейнер бокового меню */
+  .sidebar {
+    position: fixed; top: 0; left: -320px; width: 320px; height: 100vh;
+    background: #fff; box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    transition: left 0.3s ease-in-out; z-index: 1000;
+    display: flex; flex-direction: column; overflow-y: auto;
+  }
+  .sidebar.open { left: 0; }
+
+  /* Шапка меню (Логотип и крестик) */
+  .sidebar-header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 20px 25px;
+  }
+  .logo { font-size: 32px; font-weight: bold; font-family: 'Times New Roman', serif; }
+  .close-btn { 
+    background: none; border: none; font-size: 24px; 
+    cursor: pointer; color: #999; transition: color 0.2s;
+  }
+  .close-btn:hover { color: #111; }
+
+  /* Выпадающие списки (Аккордеон) */
+  .menu { padding: 10px 25px; flex-grow: 1; }
+  .accordion-item { margin-bottom: 5px; }
+  
+  .accordion-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 0; cursor: pointer; font-size: 13px; font-weight: 600;
+    color: #666; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .accordion-header:hover { color: #111; }
+  
+  .accordion-content {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+  }
+  .accordion-content ul { list-style: none; padding-bottom: 10px; padding-left: 5px; }
+  .accordion-content li { padding: 10px 0; }
+  .accordion-content a { 
+    text-decoration: none; color: #111; font-size: 14px; 
+    transition: color 0.2s;
+  }
+  .accordion-content a:hover { color: #666; }
+  
+  /* Анимация иконки стрелочки */
+  .chevron { transition: transform 0.3s ease; font-size: 10px; color: #999; }
+  .accordion-item.active .accordion-content { max-height: 500px; } /* Достаточная высота для раскрытия */
+  .accordion-item.active .chevron { transform: rotate(180deg); }
+
+  /* Кнопки в самом низу (Footer) */
+  .sidebar-footer { padding: 25px; margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+  .btn {
+    display: block; width: 100%; padding: 14px; text-align: center;
+    text-decoration: none; font-size: 12px; font-weight: bold; 
+    text-transform: uppercase; border-radius: 4px; transition: all 0.2s; letter-spacing: 0.5px;
+  }
+  .btn-outline { border: 1px solid #e0e0e0; color: #111; background: #fff; }
+  .btn-outline:hover { border-color: #111; }
+  .btn-solid { border: 1px solid #111; color: #fff; background: #111; }
+  .btn-solid:hover { background: #333; }
+  
+  .separator { border-top: 1px solid #f0f0f0; margin: 10px 0; }
+  
+  /* Темный фон за меню */
+  .overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.4); display: none; z-index: 999; 
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .overlay.show { display: block; opacity: 1; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ГЛАВНЫЙ БЛОК (Middle Section) */
+    .meddle_block_1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch; /* Растягиваем блоки, чтобы фон был до низа */
+        padding: 0; 
+        margin-top: 55px;
+    }
+
+    .meddle_block_1_text {
+        flex: 1;
+        padding-left: 250px; /* Выравнивание по линии навигации */
+        padding-right: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+    .meddle_block_1_text_Join200000 {
+        font-size: 64px;
+        font-weight: 500;
+        margin: 0 0 20px 0;
+        line-height: 1.1;
+        color: #1a1a1a;
+    }
+
+    .meddle_block_1_text_Reachmorereaders {
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 40px;
+        max-width: 500px;
+    }
+
+    .meddle_block_1_Singin {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .meddle_block_1_Singin_button {
+        background-color: #4f87ff;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        margin: 0;
+        text-decoration: none;
+    }
+
+    .meddle_block_1_Singin_Startreading {
+        color: #1a1a1a;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    /* ПРАВЫЙ БЛОК С КАРТИНКОЙ */
+    .meddle_block_2_info {
+        flex: 1.2;
+        background-color: #261f1d; /* Темный фон */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Прижимает картинку строго к низу */
+        padding-left: 60px;
+        padding-top: 60px;
+        border-top-left-radius: 40px;
+        overflow: hidden; /* Обрезает лишнее при анимации */
+    }
+
+    .meddle_block_2_image {
+        width: 100%;
+        display: flex;
+        align-items: flex-end; /* Убирает любые зазоры снизу */
+    }
+
+    .meddle_block_2_image img {
+        display: block; /* Убирает встроенный отступ inline-элементов */
+        width: 100%;
+        height: auto !important; /* Игнорируем высоту 70% из HTML */
+        border-top-left-radius: 40px;
+        
+        /* ПЛАВНАЯ АНИМАЦИЯ */
+        transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
+        will-change: transform; /* Подсказка браузеру для плавности */
+    }
+
+    /* ПЛАВНЫЙ ЭФФЕКТ ПРИ НАВЕДЕНИИ */
+    .meddle_block_2_image img:hover {
+        transform: translateY(-15px); /* Плавный подъем вверх */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 1. Главный контейнер (равняем по шапке) */
+.section-container {
+    padding: 0 250px; 
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 60px; /* Отступ от верхнего блока */
+    font-family: "Helvetica", Arial, sans-serif;
+}
+
+/* 2. Линия-разделитель */
+.wired-divider {
+    border-top: 2px solid #000;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+/* 3. Черная плашка REVIEWS */
+.label {
+    background-color: #000;
+    color: #fff;
+    display: inline-block;
+    padding: 4px 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 14px;
+    position: absolute;
+    top: 0; /* Прижимаем к линии */
+    left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-top: 20px; /* Отступ от плашки */
+}
+
+/* 5. Карточка новости */
+.strip-item {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #000;
+    border-right: 1px solid #e0e0e0;
+    padding-right: 15px; /* Маленький отступ до линии-разделителя */
+}
+
+/* Убираем линию у последней карточки в ряду */
+.strip-item2:last-child {
+    border-right: none;
+}
+
+.item-category {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.item-title {
+    font-size: 15px;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* 6. Картинки */
+.item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-left: 10px;
+    flex-shrink: 0; /* Чтобы картинка не сжималась */
+}
+/* 4. Сетка на 4 колонки */
+.strip-grid2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-top: 20px; /* Отступ от плашки */
+}
+
+/* 5. Карточка новости */
+.strip-item2 {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #000;
+    border-right: 1px solid #e0e0e0;
+    padding-right: 15px; /* Маленький отступ до линии-разделителя */
+}
+
+/* Убираем линию у последней карточки в ряду */
+.strip-item2:last-child {
+    border-right: none;
+}
+
+.item-category2 {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.item-title2 {
+    font-size: 15px;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* 6. Картинки */
+.item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-left: 10px;
+    flex-shrink: 0; /* Чтобы картинка не сжималась */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Общий контейнер */
+.meddle_block_3 {
+    display: grid;
+    grid-template-columns: 1fr 340px; /* Справа фиксированная колонка */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 20px auto;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+} */
+
+/* --- ЛЕВАЯ ЧАСТЬ --- */
+.main_post_link {
+    text-decoration: none;
+    color: #000;
+}
+
+.main_post_image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px; /* Закругленные углы как на скрине */
+}
+
+.category_label {
+    color: #b1b1b1;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+    text-transform: uppercase;
+}
+
+.main_post_title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.main_post_description {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.main_post_meta {
+    font-size: 13px;
+    color: #888;
+}
+
+.author_name { font-weight: 600; margin-right: 10px; }
+
+/* --- ПРАВАЯ ЧАСТЬ --- */
+.meddle_block_3_right {
+    border: 1px solid #e0e0e0; /* Рамка вокруг блока */
+    border-radius: 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightnow_header {
+    padding: 20px 20px 10px 20px;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.rightnow_list {
+    flex-grow: 1;
+}
+
+.rightnow_item {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 12px;
+}
+
+.rightnow_img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.rightnow_title {
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.rightnow_title:hover { color: #4f87ff; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rightnow_meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #666;
+}
+
+.meta_icon {
+    font-style: italic;
+    font-weight: bold;
+    color: #0066cc;
+}
+
+/* Кнопка See All внизу */
+.see_all_footer_btn {
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: bold;
+    border-top: 1px solid #f0f0f0;
+}
+
+.see_all_footer_btn:hover { background-color: #f9f9f9; border-radius: 0 0 12px 12px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Внешний контейнер */
+.partner_section_wrapper {
+    width: 100%;
+    margin: 30px auto;
+
+}
+
+/* Сама карточка */
+.partner_card {
+    background-color: #f1f3f6;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* Центрирует всю группу (текст + фото) внутри серого фона */
+    padding: 15px 20px;        /* Еще меньше вертикальные отступы */
+    gap: 80px;                 /* Увеличили зазор, чтобы текст и фото разошлись от краев к центру */
+    overflow: hidden;
+}
+
+/* Левая колонка с текстом */
+.partner_content_left {
+    flex: 0 1 auto;            /* Блок теперь не растягивается, а занимает место по контенту */
+    max-width: 500px;          /* Чуть сузили, чтобы блок выглядел аккуратнее */
+    text-align: left;          /* Возвращаем выравнивание текста по левому краю */
+}
+
+.partner_title_main {
+    font-family: 'Inter', sans-serif;
+    font-size: 34px;           /* Компактный размер как на макете */
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.partner_description_text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+/* Список услуг */
+.feature_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Кнопка */
+.btn_work_black {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #fff !important;
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* Правая часть с картинкой */
+.partner_image_right {
+    flex: 0 1 auto;
+}
+
+.partner_image_right img {
+    width: 100%;
+    max-width: 350px;          /* Маленькая картинка = низкая карточка */
+    height: auto;
+    border-radius: 20px;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 1. Глобальные настройки контейнера */
+.container {
+    display: grid;
+    max-width: 1440px;
+    margin: 0 auto;
+    /* Три колонки: Сайдбар (300px), Центр (гибкий), Правая часть (280px) */
+    grid-template-columns: 300px 1fr 280px;
+    gap: 0; /* Убираем gap, так как будем использовать border и padding */
+    background-color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 2. Общие стили для всех колонок */
+.grid-item {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 3. ЛЕВАЯ КОЛОНКА (Sidebar) */
+.sidebar {
+    border-right: 1px solid #eee; /* Вертикальная линия */
+}
+
+.sidebar_post {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.sidebar_link {
+    display: flex;
+    gap: 15px;
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar_img_container {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.sidebar_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar_title {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 800;
+    margin: 4px 0;
+}
+
+/* 4. ЦЕНТРАЛЬНАЯ КОЛОНКА (Main Content) */
+.main-content {
+    padding: 30px 50px;
+    text-align: center;
+}
+
+.main_title {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 0.95;
+    margin: 15px 0;
+    letter-spacing: -1px;
+    text-transform: none;
+}
+
+.main_subtitle {
+    font-size: 18px;
+    line-height: 1.4;
+    color: #444;
+    margin-bottom: 20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main_image img {
+    width: 100%;
+    max-height: 400px;
+    margin-top: 20px;
+    /* Можно добавить filter: grayscale(1); если хочешь ЧБ как на скрине */
+}
+
+/* 5. ПРАВАЯ КОЛОНКА (Widgets / Right Now) */
+.widgets {
+    border-left: 1px solid #eee; /* Вертикальная линия справа */
+}
+
+.right_post {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.right_post a {
+    text-decoration: none;
+    color: #000;
+}
+
+.right_post_title {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+/* 6. ТЕГИ (Категории и Авторы) */
+.category_tag {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.author_tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+/* Основные стили контейнера */
+.main-container {
+    max-width: 800px; /* Ширина контейнера, как на макете */
+    margin: 0 auto;
+    font-family: Arial, sans-serif; /* Похожий шрифт */
+    color: #1a1a1a;
+    padding: 20px;
+}
+
+/* Стили для секций и заголовков */
+.brands-section, .faq-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* --- Стили для секции Брендов --- */
+
+.logo-grid {
+    display: flex;
+    justify-content: space-around; /* Расстояние между лого */
+    align-items: center; /* Центрирование по вертикали */
+    flex-wrap: wrap; /* Чтобы логотипы переносились на узких экранах */
+    margin-bottom: 10px;
+}
+
+.brand-logo {
+    max-height: 35px; /* Устанавливаем максимальную высоту для выравнивания */
+    width: auto;
+    max-width: 100px;
+    filter: none; /* УБИРАЕТ ГРЕЙСКЕЙЛ (если он был) - фото будут ЦВЕТНЫМИ всегда */
+    margin: 10px;
+    object-fit: contain; /* Сохраняет пропорции лого */
+}
+
+/* Стили для 2 и 3 ряда, если нужно точное выравнивание как на макете */
+.logo-grid.second-row, .logo-grid.third-row {
+     justify-content: center; /* Центрирует логотипы во втором и третьем ряду */
+}
+
+.logo-grid.third-row .brand-logo {
+    margin: 10px 20px; /* Дополнительный отступ для третьего ряда */
+}
+
+
+/* --- Стили для секции FAQ --- */
+
+.faq-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left; /* Текст вопросов выровнен по левому краю */
+}
+
+.faq-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0; /* Светлая серая граница */
+    border-radius: 8px; /* ЗАГРУГЛЕННЫЕ УГЛЫ (border-radius) */
+    margin-bottom: 10px;
+    padding: 15px 20px; /* Отступы внутри каждого блока */
+    transition: all 0.3s ease; /* Плавный переход для ховера и открытия */
+    cursor: pointer; /* Делает весь блок кликабельным */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Легкая тень для объема */
+}
+
+/* Эффект при наведении */
+.faq-item:hover {
+    background-color: #fcfcfc;
+    border-color: #d0d0d0;
+}
+
+/* Стили для открытого элемента (опционально, на макете #2 этого нет, но полезно) */
+.faq-item[open] {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+/* Стили для заголовка вопроса (summary) */
+.faq-item summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    outline: none; /* Убирает обводку при клике */
+    list-style: none; /* Убирает стандартную стрелку браузера */
+}
+
+/* Добавляем кастомную стрелку (chevron) */
+.faq-item summary::after {
+    content: '\203A'; /* Символ ">" (chevron) */
+    font-size: 24px;
+    color: #999;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+    text-align: center;
+}
+
+/* Вращение стрелки при открытии */
+.faq-item[open] summary::after {
+    transform: rotate(90deg); /* Поворот на 90 градусов при открытии */
+    color: #555;
+}
+
+
+/* Стили для контента ответа (div class="faq-content") */
+.faq-content {
+    margin-top: 15px; /* Отступ между вопросом и ответом */
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    /* transition для плавного открытия/закрытия */
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding-top 0.3s ease;
+    max-height: 0;
+    padding-top: 0;
+}
+
+/* Открытый контент */
+.faq-item[open] .faq-content {
+    max-height: 500px; /* Примерное значение, чтобы показать контент */
+    padding-top: 10px;
+}
+
+
+
+
+
+
+
+
+.hero-banner {
+        background-color: #000;
+        background-image: url("{% static 'images/502f7f2c-75ba-4871-8625-ef40937d74b3.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 20px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }   
+
+    .hero-content {
+        max-width: 900px;
+        text-align: left;
+        width: 100%;
+    }
+
+    .zoom-in { color: #ff5a5f; font-weight: bold; letter-spacing: 1px; font-size: 14px; }
+    .hero-content h1 { font-size: 32px; margin: 15px 0; max-width: 600px; line-height: 1.2; }
+    .hero-content p { font-size: 18px; opacity: 0.9; }
+
+    /* Табы (Переключатель) */
+    .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 30px; }
+    .tab-pill { background: #e0e0e0; padding: 4px; border-radius: 25px; display: flex; }
+    .tab-btn {
+        border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer;
+        font-weight: bold; font-size: 12px; background: transparent; transition: 0.3s;
+    }
+    .tab-btn.active { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    /* Сетка */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto 30px;
+    }
+
+    .card {
+        border: 1px solid #ccc; border-radius: 12px; padding: 30px;
+        position: relative; cursor: pointer; display: flex; flex-direction: column;
+        transition: 0.2s; background: #fff;
+    }
+    
+    .card:has(input:checked) { border: 2px solid #007bbd; padding: 29px; }
+
+    .center-card { grid-column: 1 / -1; max-width: 500px; margin: 0 auto; }
+
+    .badge {
+        position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+        background: #000; color: #fff; font-size: 10px; padding: 4px 10px; border-radius: 3px;
+    }
+
+    .promo-highlight { font-weight: 800; font-size: 20px; margin: 10px 0; }
+    .card-details { font-size: 13px; color: #666; margin-top: auto; }
+
+    /* Кнопка */
+    .submit-btn {
+        background: #007bbd; color: #fff; border: none; width: 100%; max-width: 450px;
+        padding: 18px; font-size: 14px; font-weight: bold; border-radius: 4px;
+        display: block; margin: 0 auto; cursor: pointer;
+    }
+
+    .cancel-text { text-align: center; font-size: 12px; color: #888; margin-top: 15px; }
+    .payment-methods { text-align: center; margin: 20px 0; font-size: 14px; opacity: 0.7; }
+
+
+
+
+
+
+
+/* Общий контейнер */
+.magazine-layout {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 30px;
+  padding: 50px 20px;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Левая часть */
+.editorial-header {
+  flex: 1;
+}
+
+.editorial-header__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+.editorial-header__excerpt {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  line-height: 1.4;
+}
+
+.editorial-header__status {
+  font-weight: 800;
+  color: #2c3e50;
+}
+
+/* Сетка */
+.feed-grid {
+  flex: 1.5;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Карточка */
+.entry-tile {
+  position: relative;
+  aspect-ratio: 1.4 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333; /* Фолбэк цвет */
+}
+
+/* Фоновая картинка внутри карточки */
+.tile-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.7); /* Чтобы текст лучше читался */
+}
+
+/* Контент поверх картинки */
+.tile-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  pointer-events: none;
+}
+
+/* Разные шрифты для категорий (как на скрине) */
+.brand-glyph {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block;
+}
+
+.brand-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  font-weight: 900;
+  border-top: 1px solid white;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.brand-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 2rem;
+}
+
+.brand-serif {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.8rem;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .magazine-layout { flex-direction: column; }
+  .feed-grid { width: 100%; }
+}
+
+
+.hero_banner_upfooter {
+        background-color: #f1f3f6;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 20px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        min-height: 100px;
+
+    }
+
+.hero_banner_upfooter2 {
+
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 20px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Общие стили для фона */
+.wired-footer {
+        background-color: black;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 20px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        display: flex;
+        justify-content: center;
+}
+
+/* Контейнер теперь занимает 100% ширины */
+.footer-container {
+    width: 100%;
+    max-width: 100%; /* Убираем ограничение */
+    padding: 0 50px; /* Отступы по бокам, чтобы текст не касался краев */
+    box-sizing: border-box;
+}
+
+/* Шапка футера: Логотип по центру */
+.footer-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    border: 2px solid #fff;
+    display: inline-block;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.description {
+    max-width: 800px; /* Текст описания лучше оставить узким для читаемости */
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Линии-разделители на всю ширину */
+.divider {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 30px 0;
+}
+
+/* Сетки ссылок: Растягиваем на всю ширину */
+.footer-links, .footer-utility {
+    display: flex;
+    justify-content: space-between; /* Распределяем колонки по краям */
+    flex-wrap: wrap;
+}
+
+.link-column, .utility-col {
+    flex: 1; /* Каждая колонка занимает равное место */
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+/* Стили заголовков и списков */
+.link-column h3 {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.link-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-column li {
+    margin-bottom: 8px;
+}
+
+.link-column a, .utility-col a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+}
+
+.link-column a:hover, .utility-col a:hover {
+    color: #fff;
+}
+
+/* Нижняя часть: Копирайт слева, иконки справа */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 11px;
+    color: #666;
+}
+
+.copyright {
+    max-width: 60%;
+    line-height: 1.5;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.social-icons span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.social-icons span:hover {
+    color: #fff;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .footer-links, .footer-utility, .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .footer-bottom {
+        gap: 20px;
+    }
+    .copyright {
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+:root {
+    --wired-black: #000000;
+    --wired-gray: #ccc;
+    --wired-red: #ff0000; /* Цвет для акцентов если нужно */
+}
+
+.magazine-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: 'Helvetica', sans-serif;
+}
+
+/* Разделитель сверху */
+.news-line-breaker {
+    border-top: 4px solid var(--wired-black);
+    margin-bottom: 20px;
+    padding-top: 5px;
+}
+.line-label {
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+/* Левая колонка */
+.mini-entry {
+    display: flex;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+.entry-link { display: flex; text-decoration: none; color: inherit; gap: 15px; }
+.entry-visual img { width: 100px; height: 100px; object-fit: cover; }
+
+/* Центр - Hero */
+.hero-block { text-align: center; }
+.label-accent {
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+.hero-title {
+    font-size: 48px;
+    line-height: 0.95;
+    font-weight: 800;
+    margin: 10px 0;
+    letter-spacing: -2px;
+}
+.hero-summary { font-size: 18px; color: #444; margin-bottom: 15px; }
+.hero-frame img { width: 100%; margin-top: 20px;  height: 400px;object-fit: cover; border-radius: 12px;}
+
+/* Двухколоночный блок под главной картинкой */
+.sub-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #000;
+}
+.sub-title { font-size: 18px; margin: 5px 0; line-height: 1.2; }
+.sub-text { font-size: 13px; color: #666; }
+
+/* Общие стили */
+.byline {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    display: block;
+    margin-top: 8px;
+}
+.centered { text-align: center; }
+
+/* Правая колонка */
+.trending-panel { border-left: 1px solid #eee; padding-left: 20px; }
+.panel-header { border-bottom: 2px solid #000; font-weight: 900; padding-bottom: 5px; margin-bottom: 15px; }
+.text-snack { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+.snack-title { font-size: 18px; line-height: 1.2; margin: 0; }
+
+/* Темный промо-блок */
+.dark-promo-box {
+    background: #000;
+    color: #fff;
+    padding: 0;
+    margin-top: 30px;
+}
+.dark-promo-box img { width: 100%; filter: grayscale(1); }
+.promo-content { padding: 15px; }
+.promo-label { color: #fff; font-size: 10px; font-weight: 900; }
+.promo-title { font-size: 16px; margin: 10px 0; }
+.dark-promo-box .byline { color: #ccc; }

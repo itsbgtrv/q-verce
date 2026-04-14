@@ -1,5 +1,7 @@
 {% block content %}
     <h1>{{ post.title }}</h1>
+    <h1></h1>{{ post.subtitle }}</h1>
+    <h1></h1>{{post.category}}</h1>
     <p>Author: {{ post.user.first_name }}</p>
 
     {% if post.image %}
@@ -37,12 +39,16 @@
         {% if user == post.user %}
             <div style="margin-top: 20px; padding: 10px; border: 1px dashed #ccc;">
                 <h4>Управление постом</h4>
-                <p>Вы автор этого поста. Здесь можно добавить логику редактирования.</p>
+                <a href="{% url 'post_edit' post.id %}" style="padding: 5px 10px; background-color: #f0ad4e; color: white; text-decoration: none; border-radius: 4px;">
+                    Редактировать пост
+                </a>
             </div>
         {% endif %}
 
+
     {% else %}
         <p><a href="{% url 'register' %}">Войдите</a>, чтобы оставить комментарий.</p>
+        
     {% endif %}
 
     <p style="margin-top: 30px;"><a href="{% url 'base' %}">← Назад к ленте</a></p>

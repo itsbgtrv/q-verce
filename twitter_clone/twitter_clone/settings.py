@@ -140,3 +140,6 @@ STATICFILES_DIRS = [
 ]
 
 LOGOUT_REDIRECT_URL = '/'
+
+STRIPE_PUBLIC_KEY = 'pk_test_...'
+STRIPE_SECRET_KEY = 'sk_test_...'

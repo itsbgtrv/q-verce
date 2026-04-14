@@ -10,4 +10,8 @@ urlpatterns = [
     path('news/', views.news, name='news'),
     path('joblist/', views.joblist, name='joblist'),
     path('verify/', views.checkverify, name='checkverify'),
+    path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
+    path('subscribe/', views.subscribe_page, name='subscribe'),
+    path('create-checkout-session/', views.create_checkout_session, name='create-checkout-session'),
+    path('webhook/', views.stripe_webhook, name='stripe-webhook'),
 ]

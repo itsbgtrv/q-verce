@@ -26,6 +26,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     # Новое поле username с требованием уникальности
     username = models.CharField(max_length=50, unique=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
