@@ -18,7 +18,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     background: #fff;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Боковые блоки занимают равное место, чтобы центр был идеально по центру */
